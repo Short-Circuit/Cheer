@@ -11,6 +11,8 @@ $(document).ready(function () {
     setSize(size);
 });
 
+var color_paused = false;
+var anim_paused = false;
 var text = "";
 var current_text = "";
 var index = 0;
@@ -26,7 +28,8 @@ var color = "#000000";
 
 function setText(new_text) {
     if (text_element != null) {
-        text_element.innerHTML = "";
+        text_element.innerHTML = new_text;
+        text_element.setAttribute("style", "visibility: visible");
     }
     text = new_text;
     current_text = "";
@@ -36,12 +39,23 @@ function setText(new_text) {
     flash_count = 0;
 }
 
+function toggleColorPaused(){
+    color_paused ^= true;
+}
+
+function toggleAnimPaused(){
+    anim_paused ^= true;
+}
+
 var red = 0;
 var blue = 0;
 var green = 0;
 var color_state = 0;
 
 function modColor() {
+    if(color_paused){
+        return;
+    }
     if(color_state == 0){
         red++;
         if(red >= 255){
@@ -84,17 +98,13 @@ function toHex(num) {
     return ("00" + num.toString(16)).slice(-2);
 }
 
-function getColorComplement(color) {
-    return color;
-}
-
 function setSize(new_size) {
     size = new_size;
     size_element.setAttribute("style", "font-size: " + size + "pt");
 }
 
 function cheer() {
-    if (!text) {
+    if (!text || anim_paused) {
         return;
     }
     if (!state) {

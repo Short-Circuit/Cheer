@@ -30,7 +30,18 @@ form #text_input {
 }
 
 form #size_input {
-    top: 20px;
+    top: 15px;
+}
+
+form #color_pause{
+    top: 30px;
+    width: auto;
+}
+
+form #anim_pause{
+    top: 30px;
+    left: 12px;
+    width: auto;
 }
 
 .center_outer {

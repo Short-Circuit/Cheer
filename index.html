@@ -11,11 +11,17 @@ Created by Caleb Milligan on 3/2/2016.
     </head>
     <body id="body">
         <form onsubmit="setText(document.getElementById('text_input').value);return false">
-            <input id="text_input" title="Text" type="text" onsubmit="" placeholder="Text">
+            <input id="text_input" title="Text" type="text" onsubmit="" placeholder="Text" autocomplete="off">
         </form>
         <form onsubmit="setSize(document.getElementById('size_input').value);return false">
             <input id="size_input" title="Size" type="number" value="100" min="1" max="999" onsubmit=""
-                   onchange="setSize(document.getElementById('size_input').value);" placeholder="Size">
+                   onchange="setSize(document.getElementById('size_input').value);" placeholder="Size" autocomplete="off">
+        </form>
+        <form onsubmit="return false">
+            <input id="color_pause" title="Pause Colors" type="checkbox" checked="checked" onchange="toggleColorPaused()">
+        </form>
+        <form onsubmit="return false">
+            <input id="anim_pause" title="Pause Animation" type="checkbox" checked="checked" onchange="toggleAnimPaused()">
         </form>
         <div class="center_outer">
             <div class="center_middle">
