@@ -44,6 +44,11 @@ form #anim_pause{
     width: auto;
 }
 
+form #show_controls{
+    bottom: 0;
+    width: auto;
+}
+
 .center_outer {
     display: table;
     position: absolute;

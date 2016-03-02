@@ -9,7 +9,10 @@ Created by Caleb Milligan on 3/2/2016.
         <script type="application/javascript" src="js/cheer.js"></script>
         <link type="text/css" rel="stylesheet" href="css/cheer.css">
     </head>
-    <body id="body">
+    <body id="body" style="background-color: #FFFFFF">
+        <form onsubmit="return false;">
+            <input id="show_controls" title="Show Controls" type="checkbox" checked="checked" onchange="toggleControls()">
+        </form>
         <form onsubmit="setText(document.getElementById('text_input').value);return false">
             <input id="text_input" title="Text" type="text" onsubmit="" placeholder="Text" autocomplete="off">
         </form>
@@ -18,14 +21,14 @@ Created by Caleb Milligan on 3/2/2016.
                    onchange="setSize(document.getElementById('size_input').value);" placeholder="Size" autocomplete="off">
         </form>
         <form onsubmit="return false">
-            <input id="color_pause" title="Pause Colors" type="checkbox" checked="checked" onchange="toggleColorPaused()">
+            <input id="color_pause" title="Pause Colors" type="checkbox" onchange="toggleColorPaused()">
         </form>
         <form onsubmit="return false">
-            <input id="anim_pause" title="Pause Animation" type="checkbox" checked="checked" onchange="toggleAnimPaused()">
+            <input id="anim_pause" title="Pause Animation" type="checkbox" onchange="toggleAnimPaused()">
         </form>
         <div class="center_outer">
             <div class="center_middle">
-                <div id="color">
+                <div id="color" style="color: #000000">
                     <div id="size">
                         <div id="text"></div>
                     </div>

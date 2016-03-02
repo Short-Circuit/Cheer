@@ -11,8 +11,8 @@ $(document).ready(function () {
     setSize(size);
 });
 
-var color_paused = false;
-var anim_paused = false;
+var color_paused = true;
+var anim_paused = true;
 var text = "";
 var current_text = "";
 var index = 0;
@@ -25,6 +25,7 @@ var size_element;
 var body_element;
 var size = 100;
 var color = "#000000";
+var controls_shown = true;
 
 function setText(new_text) {
     if (text_element != null) {
@@ -45,6 +46,15 @@ function toggleColorPaused(){
 
 function toggleAnimPaused(){
     anim_paused ^= true;
+}
+
+function toggleControls(){
+    controls_shown ^= true;
+    var visible = "visibility: " + (controls_shown ? "visible" : "hidden");
+    document.getElementById("text_input").setAttribute("style", visible);
+    document.getElementById("size_input").setAttribute("style", visible);
+    document.getElementById("anim_pause").setAttribute("style", visible);
+    document.getElementById("color_pause").setAttribute("style", visible);
 }
 
 var red = 0;
