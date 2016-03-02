@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body * {
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+}
+
+form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+form *{
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    position: fixed;
+    left: 0;
+    z-index: 999;
+    width: 15%;
+}
+
+form #text_input {
+    top: 0;
+}
+
+form #size_input {
+    top: 20px;
+}
+
+.center_outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.center_middle {
+    display: table-cell;
+    vertical-align: middle;
+}
