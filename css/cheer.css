@@ -18,6 +18,7 @@ form {
 form *{
     text-align: left;
     background-color: transparent;
+    color: #FFFFFF;
     border: none;
     position: fixed;
     left: 0;
@@ -41,6 +42,12 @@ form #color_pause{
 form #anim_pause{
     top: 30px;
     left: 15px;
+    width: auto;
+}
+
+form #high_contrast{
+    top: 30px;
+    left: 30px;
     width: auto;
 }
 

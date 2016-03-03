@@ -13,6 +13,7 @@ $(document).ready(function () {
 
 var color_paused = true;
 var anim_paused = true;
+var high_contrast = false;
 var text = "";
 var current_text = "";
 var index = 0;
@@ -40,55 +41,68 @@ function setText(new_text) {
     flash_count = 0;
 }
 
-function toggleColorPaused(){
+function toggleContrast() {
+    high_contrast ^= true;
+}
+
+function toggleColorPaused() {
     color_paused ^= true;
 }
 
-function toggleAnimPaused(){
+function toggleAnimPaused() {
     anim_paused ^= true;
 }
 
-function toggleControls(){
+function toggleControls() {
     controls_shown ^= true;
     var visible = "visibility: " + (controls_shown ? "visible" : "hidden");
     document.getElementById("text_input").setAttribute("style", visible);
     document.getElementById("size_input").setAttribute("style", visible);
     document.getElementById("anim_pause").setAttribute("style", visible);
     document.getElementById("color_pause").setAttribute("style", visible);
+    document.getElementById("high_contrast").setAttribute("style", visible);
 }
 
-var red = 0;
-var blue = 0;
-var green = 0;
+var red = 255;
+var blue = 255;
+var green = 255;
 var color_state = 0;
 
 function modColor() {
-    if(color_paused){
+    if (color_paused) {
         return;
     }
-    if(color_state == 0){
-        red++;
-        if(red >= 255){
+    if (color_state == 0) {
+        blue--;
+        green--;
+        if (blue <= 0) {
             color_state = 1;
         }
     }
-    else if(color_state == 1){
+    else if (color_state == 1) {
         blue++;
         green++;
-        if(blue >= 255){
+        if (blue >= 255) {
             color_state = 2;
         }
     }
-    else if(color_state == 2){
-        red--;
-        green--;
-        if(red <= 0){
+    else if (color_state == 2) {
+        green++;
+        if (green >= 255) {
             color_state = 3;
         }
     }
-    if(color_state == 3){
-        blue--;
-        if(blue <= 0){
+    else if (color_state == 3) {
+        green--;
+        red--;
+        if (red <= 0) {
+            color_state = 4;
+        }
+    }
+    if (color_state == 4) {
+        red++;
+        green++;
+        if (green >= 255) {
             color_state = 0;
         }
     }
@@ -96,7 +110,7 @@ function modColor() {
     green = Math.min(Math.max(0, green), 255);
     blue = Math.min(Math.max(0, blue), 255);
     var c_red = red ^ 0xff;
-    var c_green = green ^ 0xff;
+    var c_green = (high_contrast ? green ^ 0xff : 0);
     var c_blue = blue ^ 0xff;
     var bg = toHex(c_red) + toHex(c_green) + toHex(c_blue);
     color = toHex(red) + toHex(green) + toHex(blue);
