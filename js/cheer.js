@@ -14,7 +14,7 @@ $(document).ready(function () {
 var color_paused = true;
 var anim_paused = true;
 var high_contrast = false;
-var text = "";
+var text = [];
 var current_text = "";
 var index = 0;
 var state = false;
@@ -27,13 +27,15 @@ var body_element;
 var size = 100;
 var color = "#000000";
 var controls_shown = true;
+var text_index = 0;
 
 function setText(new_text) {
+    text = new_text.split(";");
     if (text_element != null) {
-        text_element.innerHTML = new_text;
+        text_element.innerHTML = text[0];
         text_element.setAttribute("style", "visibility: visible");
     }
-    text = new_text;
+    text_index = 0;
     current_text = "";
     index = 0;
     state = false;
@@ -132,9 +134,9 @@ function cheer() {
         return;
     }
     if (!state) {
-        current_text = text.substr(0, index++);
+        current_text = text[text_index].substr(0, index++);
         text_element.innerHTML = current_text;
-        if (index > text.length) {
+        if (index > text[text_index].length) {
             current_text = "";
             index = 0;
             state = true;
@@ -147,6 +149,10 @@ function cheer() {
             flash_count = 0;
             flash_state = false;
             state = false;
+            text_index++;
+            if(text_index >= text.length){
+                text_index = 0;
+            }
         }
     }
 }
